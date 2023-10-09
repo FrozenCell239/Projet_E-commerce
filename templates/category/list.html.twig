@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+<h2>{{ category.name }} : liste des produits</h2>
+<div class="w-full grid gap-5 grid-cols-5">
+    {% for product in products.data %}
+        {%
+            include "./_partials/_product_card.html.twig"
+            with {
+                'name' : product.name,
+                'description' : product.description,
+                'href' : path('app_product_details', {'slug': product.slug})
+            }
+        %}
+    {% endfor %}
+</div>
+{% set path = 'app_category_list' %}
+{% set slug = category.slug %}
+{% set pages_number = products.pages %}
+{% set current_page = products.page %}
+{% include "_partials/_pagination.html.twig" %}
+{% endblock %}

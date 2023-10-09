@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+
+<h1>Accueil e-commerce</h1><hr>
+
+{% for category in categories %}
+    {% if category.parent == null %}
+        {{ (loop.first) ? '' : '</div>' }}
+        <div class="flex w-full h-auto">
+            <h2>{{ category.name }}</h2><hr>
+        </div>
+        <div class="flex w-full h-auto space-x-5">
+    {% else %}
+        {%
+            include "./_partials/_subcategory_card.html.twig"
+            with {
+                'name' : category.name,
+                'href' : path('app_category_list', {slug: category.slug})
+            }
+        %}
+        {{ (loop.last) ? '</div>' : '' }}
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

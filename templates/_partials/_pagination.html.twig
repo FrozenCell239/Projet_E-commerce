@@ -1,0 +1,83 @@
+{% if pages_number > 1 %}
+<div class="pagination-bar">
+    <nav aria-label="Page navigation">
+        <ul class="list-style-none flex">
+            {% if current_page > 1 %}
+            <li>
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="{{ path(path, {slug: slug, page: current_page - 1}) }}"
+                >
+                    Précédent
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a
+                    class="pointer-events-none relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400"
+                    href="#"
+                >
+                    Précédent
+                </a>
+            </li>
+            {% endif %}
+            {% for page in 1..pages_number %}
+            <li>
+                <a
+                    {% if page == current_page %}
+                    class="relative block rounded bg-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-800 transition-all duration-300"
+                    href="#!"
+                    {% else %}
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="{{ path(path, {slug: slug, page: page}) }}"
+                    {% endif %}
+                >
+                    {{ page }}
+                    {% if page == current_page %}
+                        <span
+                            class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
+                        >
+                            (current)
+                        </span>
+                    {% endif %}
+                </a>
+            </li>
+            {% endfor %}
+            {#
+            <li aria-current="page">
+                <a
+                    class="relative block rounded bg-primary-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
+                    href="#!"
+                >
+                    2
+                    <span
+                        class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
+                    >
+                        (current)
+                    </span>
+                </a>
+            </li>
+            #}
+            {% if current_page < pages_number %}
+            <li>
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="{{ path(path, {slug: slug, page: current_page + 1}) }}"
+                >
+                    Suivant
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a
+                    class="pointer-events-none relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400"
+                    href="#"
+                >
+                    Suivant
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}

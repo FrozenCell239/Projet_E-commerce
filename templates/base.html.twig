@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}"> <!--Favicon.-->
+        <title>{% block title %}Welcome !{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body class="bg-gray-200">
+        <header>
+            {% block header %}
+                {% include "./_partials/_header.html.twig" %}
+            {% endblock %}
+            <div class="pr-10 pl-10 mt-5">
+                {% include "./_partials/_flash.html.twig" %}
+                {% if app.user and app.user.isVerified == false %}
+                <div class="warning-message-box">
+                    ATTENTION : vous n'avez pas encore vérifié votre adresse mail !<br>
+                    <a class="underline" href="{{ path('app_resend_verification_link') }}">Renvoyer le mail d'activation.</a>
+                </div>
+                {% endif %}
+            </div>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+            {% block footer %}
+                {% include "./_partials/_footer.html.twig" %}
+            {% endblock %}
+        </footer>
+    </body>
+</html>

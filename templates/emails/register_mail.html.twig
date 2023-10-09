@@ -1,0 +1,9 @@
+<h1>Activation de votre compte</h1>
+<hr>
+<p>Bonjour {{ user.firstname }} !</p>
+<p>Avant d'effectuer vos achats, vous devez confirmer votre inscription en cliquant <a href="{{ absolute_url(path('app_verify_user', {token: token})) }}">ici</a>.</p>
+<p style="font-style: italic;">Notez que ce lien expire dans 3 heures.</p>
+<p>
+    Cordialement,<br>
+    L'équipe de votre site e-commerce !
+</p>
