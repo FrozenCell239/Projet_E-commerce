@@ -1,0 +1,9 @@
+{{ form_errors(product_form) }}
+{{ form_start(product_form) }}
+    {{ form_row(product_form.name, {label: 'Nom'}) }}
+    {{ form_row(product_form.category, {label: 'Catégorie'}) }}
+    {{ form_row(product_form.description, {label: 'Description'}) }}
+    {{ form_row(product_form.price, {label: 'Prix'}) }}
+    {{ form_row(product_form.stock, {label: 'Quantité en stock'}) }}
+    <button type="submit">{{ button_label|default('Valider') }}</button>
+{{ form_end(product_form) }}
