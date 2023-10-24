@@ -50,7 +50,7 @@ class ProductVoter extends Voter{
             default :{
                 return false;
                 break;
-            }
-        }
+            };
+        };
     }
 }
