@@ -33,7 +33,7 @@ class ProductFixtures extends Fixture
                     rand(0, count(CategoryFixtures::$non_parent) - 1)
                 ]
             );
-            $product->setCategorie($category);
+            $product->setCategory($category);
             $this->setReference('prod-'.$i, $product);
             $manager->persist($product);
         };
