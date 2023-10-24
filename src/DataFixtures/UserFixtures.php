@@ -31,6 +31,7 @@ class UserFixtures extends Fixture
                 ->setZipcode(str_replace(' ', '', $faker->postcode))
                 ->setCity($faker->city)
                 ->setIsVerified(true)
+                ->setResetToken('')
             ;
             if($i === 0){ //First fake user is a fake admin.
                 $user
