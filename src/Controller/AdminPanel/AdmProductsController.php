@@ -45,11 +45,8 @@ class AdmProductsController extends AbstractController
                 $product->addImage($new_image);
             };
 
-            # Setting up other informations
-            $product
-                ->setSlug($slugger->slug($product->getName())) //Creating the slug.
-                ->setPrice($product->getPrice() * 100) //Fixing the price.
-            ;
+            # Setting up the slug
+            $product->setSlug($slugger->slug($product->getName())); //Creating the slug.
 
             # Putting the new product into database
             $entity_manager->persist($product);
@@ -70,7 +67,6 @@ class AdmProductsController extends AbstractController
     ): Response
     {
         $this->denyAccessUnlessGranted('PRODUCT_EDIT', $product); //Checking if user is allowed to edit with the voter.
-        $product->setPrice($product->getPrice() / 100); //Fixing the price.
         $product_form = $this->createForm(ProductFormType::class, $product); //Creating the new product's form.
         $product_form->handleRequest($request); //Handling the the form request.
         if($product_form->isSubmitted() && $product_form->isValid()){ //Checking if the form is both submitted and valid.
@@ -83,11 +79,11 @@ class AdmProductsController extends AbstractController
                 $new_image->setName($file);
                 $product->addImage($new_image);
             };
+            
+            # Setting up the slug
+            $product->setSlug($slugger->slug($product->getName()));
 
-            $product
-                ->setSlug($slugger->slug($product->getName())) //Creating the slug.
-                ->setPrice($product->getPrice() * 100) //Fixing the price.
-            ;
+            # Saving into database
             $entity_manager->persist($product);
             $entity_manager->flush();
             $this->addFlash('success', 'Produit modifié avec succès !');
