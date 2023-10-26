@@ -5,5 +5,26 @@
     {{ form_row(product_form.description, {label: 'Description'}) }}
     {{ form_row(product_form.price, {label: 'Prix'}) }}
     {{ form_row(product_form.stock, {label: 'Quantité en stock'}) }}
+    
+    {# Get images when edit mode #}
+    {% if app.request.attributes.get('_route') == 'app_admin_products_edit' %}
+        <h6>Images actuelles</h6>
+        <div class="flex space-x-4">
+        {% for image in product.images %}
+            <div>
+                <img
+                    src="{{ asset('assets/uploads/products/mini/300x300-' ~ image.name) }}"
+                    alt="{{ image.name }}"
+                    width="150"
+                >
+                </img>
+                <a href="{{ path('app_admin_products_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+                    Supprimer
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {{ form_row(product_form.images)}}
     <button type="submit">{{ button_label|default('Valider') }}</button>
 {{ form_end(product_form) }}

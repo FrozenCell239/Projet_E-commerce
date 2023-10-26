@@ -9,6 +9,7 @@
         {%
             include "./_partials/_product_card.html.twig"
             with {
+                'img_src': asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name),
                 'name' : product.name,
                 'description' : product.description,
                 'href' : path('app_product_details', {'slug': product.slug})

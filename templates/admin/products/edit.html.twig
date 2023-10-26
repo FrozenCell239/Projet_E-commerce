@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Administration des produits{% endblock %}
-
+{% block javascripts %}
+    <script src="{{ asset('assets/js/image_delete.js') }}" defer></script>
+{% endblock %}
 {% block body %}
     <h1>Modification d'un produit</h1>
     {%
