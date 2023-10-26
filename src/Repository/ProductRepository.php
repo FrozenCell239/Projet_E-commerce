@@ -6,6 +6,7 @@ use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -23,8 +24,8 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     public function paginatedFindProducts(int $page, string $slug, int $limit = 6) : array {
-        if($page < 0){trigger_error("Page number must not be negative.", E_USER_ERROR);};
-        if($limit <= 0){trigger_error("Pagination limit must not be null or negative.", E_USER_ERROR);};
+        if($page < 0){throw new Exception("Page number must not be negative.");};
+        if($limit <= 0){throw new Exception("Pagination limit must not be null or negative.");};
         $result = [];
         $query = $this
             ->getEntityManager()
