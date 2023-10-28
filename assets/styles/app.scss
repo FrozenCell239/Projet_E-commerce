@@ -128,4 +128,44 @@
             justify-center
         ;
     }
+    .admin-nav{
+        @apply
+            space-y-2
+        ;
+    }
+    .admin-nav-section{
+        @apply
+            block
+            max-w-[18rem]
+            rounded-lg
+            border
+            border-neutral-500
+            bg-white
+            shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
+            dark:bg-neutral-600
+        ;
+    }
+    .admin-nav-section > div{
+        @apply
+            px-6
+            py-3
+        ;
+    }
+    .admin-nav-section > a{
+        @apply
+            text-base
+            text-black
+            dark:text-neutral-50
+        ;
+    }
+    .admin-nav-section > h1{
+        @apply
+            border-b-2
+            border-[#0000002d]
+            px-6
+            py-3
+            text-neutral-600
+            dark:text-neutral-50
+        ;
+    }
 }
