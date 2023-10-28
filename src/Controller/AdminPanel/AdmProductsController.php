@@ -5,6 +5,7 @@ namespace App\Controller\AdminPanel;
 use App\Entity\Image;
 use App\Entity\Product;
 use App\Form\ProductFormType;
+use App\Repository\ProductRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,10 +19,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class AdmProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ProductRepository $productRepository): Response
     {
-        return $this->render('admin/products/index.html.twig');
+        $products = $productRepository->findAll();
+        return $this->render('admin/products/index.html.twig', compact('products'));
     }
+
     #[Route('/add', name: 'add')]
     public function add(
         Request $request,
@@ -57,6 +60,7 @@ class AdmProductsController extends AbstractController
         };
         return $this->render('admin/products/add.html.twig', compact('product_form'));
     }
+
     #[Route('/edit/{id}', name: 'edit')]
     public function edit(
         Product $product,
@@ -94,6 +98,7 @@ class AdmProductsController extends AbstractController
             'product' => $product
         ]);
     }
+
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Product $product): Response
     {
