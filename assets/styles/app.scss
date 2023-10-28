@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS classes using Tailwind pre-made classes */
+/* Custom styles (most use Tailwind pre-made classes) */
 @layer components{
 
     /* HTML tags customisation */
@@ -37,29 +37,29 @@
     .danger-message-box{
         @extend .message-box;
         @apply
-            border-red-500
-            bg-red-300
+            border-danger-500
+            bg-danger-300
         ;
     }
     .info-message-box{
         @extend .message-box;
         @apply
-            border-blue-500
-            bg-blue-300
+            border-primary-500
+            bg-primary-300
         ;
     }
     .warning-message-box{
         @extend .message-box;
         @apply
-            border-orange-500
-            bg-orange-300
+            border-warning-500
+            bg-warning-300
         ;
     }
     .success-message-box{
         @extend .message-box;
         @apply
-            border-green-500
-            bg-green-300
+            border-success-500
+            bg-success-300
         ;
     }
 
@@ -79,25 +79,25 @@
     .primary-button{
         @extend .button;
         @apply
-            bg-blue-500
-            hover:bg-blue-700
-            focus:ring-blue-900
+            bg-primary-500
+            hover:bg-primary-700
+            focus:ring-primary-900
         ;
     }
     .validate-button{
         @extend .button;
         @apply
-            bg-green-500
-            hover:bg-green-700
-            focus:ring-green-900
+            bg-success-500
+            hover:bg-success-700
+            focus:ring-success-900
         ;
     }
     .cancel-button{
         @extend .button;
         @apply
-            bg-red-500
-            hover:bg-red-700
-            focus:ring-red-900
+            bg-danger-500
+            hover:bg-danger-700
+            focus:ring-danger-900
         ;
     }
 
