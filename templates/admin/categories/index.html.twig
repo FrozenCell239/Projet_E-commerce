@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration{% endblock %}
+{% block body %}
+    {% include "_partials/_admin_nav.html.twig" %}
+    <h1 class="text-center">Liste des catégories</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Parent</th>
+                <th>Slug</th>
+                <th>Ordre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                {% if category.parent is not null %}
+                    {{ category.parent.name }}
+                {% endif %}
+                </td>
+                <td>{{ category.slug }}</td>
+                <td>{{ category.categoryOrder }}</td>
+            </tr>            
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
