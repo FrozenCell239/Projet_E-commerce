@@ -101,7 +101,49 @@
         ;
     }
 
-    /* Other custom classes */
+    /* Badge classes */
+    .role-badge{
+        @apply
+            inline-block
+            whitespace-nowrap
+            rounded-[0.27rem]
+            px-[0.65em]
+            pb-[0.25em]
+            pt-[0.35em]
+            text-center
+            align-baseline
+            text-[0.75em]
+            font-bold
+            leading-none
+            border
+        ;
+    }
+    .ROLE_ADMIN-badge{
+        @extend .role-badge;
+        @apply
+            bg-danger-100
+            text-danger-800
+            border-danger-800
+        ;
+    }
+    .ROLE_PRODUCT_ADMIN-badge{
+        @extend .role-badge;
+        @apply
+            bg-warning-100
+            text-warning-800
+            border-warning-800
+        ;
+    }
+    .ROLE_USER-badge{
+        @extend .role-badge;
+        @apply
+            bg-primary-100
+            text-primary-800
+            border-primary-800
+        ;
+    }
+
+    /* Navs classes */
     .navbar{
         @apply
             flex-nowrap
@@ -168,48 +210,10 @@
             dark:text-neutral-50
         ;
     }
+
+    /* Other custom classes */
     .thumbnail{
         height: 50px;
         width: auto;
-    }
-    .role-badge{
-        @apply
-            inline-block
-            whitespace-nowrap
-            rounded-[0.27rem]
-            px-[0.65em]
-            pb-[0.25em]
-            pt-[0.35em]
-            text-center
-            align-baseline
-            text-[0.75em]
-            font-bold
-            leading-none
-            border
-        ;
-    }
-    .ROLE_ADMIN-badge{
-        @extend .role-badge;
-        @apply
-            bg-danger-100
-            text-danger-800
-            border-danger-800
-        ;
-    }
-    .ROLE_PRODUCT_ADMIN-badge{
-        @extend .role-badge;
-        @apply
-            bg-warning-100
-            text-warning-800
-            border-warning-800
-        ;
-    }
-    .ROLE_USER-badge{
-        @extend .role-badge;
-        @apply
-            bg-primary-100
-            text-primary-800
-            border-primary-800
-        ;
     }
 }
