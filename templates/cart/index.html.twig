@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+
+<h1>Votre panier</h1><hr>
+<table>
+    <thead>
+        <tr>
+            <th>Nom de l'article</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Prix total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_data %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price / 100 }} €</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.quantity * item.product.price / 100 }} €</td>
+            <td>
+                <a
+                    href="{{ path('app_product_details', {'slug': item.product.slug}) }}"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    class="cart-action-button"
+                >
+                    &#x1F50E;&#xFE0E;
+                </a>
+                <a
+                    href="{{ path('app_cart_add', {id: item.product.id}) }}"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    class="cart-action-button"
+                >
+                    &plus;
+                </a>
+                <a
+                    href="{{ path('app_cart_remove', {id: item.product.id}) }}"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    class="cart-action-button"
+                >
+                    &minus;
+                </a>
+                <a
+                    href="{{ path('app_cart_delete', {id: item.product.id}) }}"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    class="cart-delete-button"
+                >
+                    &times;
+                </a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Votre panier est vide.</td>
+        </tr>
+        <tr>
+            <td colspan="5"><i>Du moins, pour l'instant. ;)</i></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">Prix total :</td>
+            <td>{{ total_price / 100 }} €</td>
+        </tr>
+    </tfoot>
+</table>
+<a
+    href="{{ path('app_cart_empty', {id: item.product.id}) }}"
+    data-te-ripple-init
+    data-te-ripple-color="light"
+    class="cancel-button"
+>
+    Vider le panier
+</a>
+{% endblock %}
