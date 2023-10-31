@@ -100,6 +100,33 @@
             focus:ring-danger-900
         ;
     }
+    .cart-action-button{
+        @apply
+            px-2
+            inline-block
+            rounded-full
+            transition
+            duration-150
+            ease-in-out
+            focus:outline-none
+            focus:ring-0
+            text-black
+            bg-secondary-400
+            hover:bg-secondary-800
+            focus:bg-secondary-800
+            hover:text-white
+            focus:text-white
+        ;
+    }
+    .cart-delete-button{
+        @extend .cart-action-button;
+        @apply
+            text-white
+            bg-[#bb0000]
+            hover:bg-[#770000]
+            focus:bg-[#770000]
+        ;
+    }
 
     /* Badge classes */
     .role-badge{
