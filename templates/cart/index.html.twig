@@ -14,7 +14,8 @@
         </tr>
     </thead>
     <tbody>
-        {% for item in cart_data %}
+    {% set price_display = true %}
+    {% for item in cart_data %}
         <tr>
             <td>{{ item.product.name }}</td>
             <td>{{ item.product.price / 100 }} €</td>
@@ -55,28 +56,35 @@
                 </a>
             </td>
         </tr>
-        {% else %}
+    {% else %}
         <tr>
             <td colspan="5">Votre panier est vide.</td>
         </tr>
         <tr>
             <td colspan="5"><i>Du moins, pour l'instant. ;)</i></td>
         </tr>
-        {% endfor %}
+        {% set price_display = false %}
     </tbody>
+    {% endfor %}
+    {% if price_display == true %}
     <tfoot>
         <tr>
             <td colspan="4">Prix total :</td>
             <td>{{ total_price / 100 }} €</td>
         </tr>
+        <tr>
+            <td colspan="5">
+                <a
+                    href="{{ path('app_cart_empty')}}"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    class="cancel-button"
+                >
+                    Vider le panier
+                </a>
+            </td>
+        </tr>
     </tfoot>
+    {% endif %}
 </table>
-<a
-    href="{{ path('app_cart_empty')}}"
-    data-te-ripple-init
-    data-te-ripple-color="light"
-    class="cancel-button"
->
-    Vider le panier
-</a>
 {% endblock %}
