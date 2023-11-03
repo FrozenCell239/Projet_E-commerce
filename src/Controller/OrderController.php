@@ -55,14 +55,12 @@ class OrderController extends AbstractController
         try{
             $entityManager->persist($order);
             $entityManager->flush();
+            $this->addFlash('info', 'Commande crée avec succès !');
+            $session->remove('cart');
         }
         catch(\Throwable $th){
             $this->addFlash('danger', 'Une erreur est survenue lors de la création de votre commande.');
             throw $th;
-        }
-        finally{
-            $this->addFlash('info', 'Commande crée avec succès !');
-            $session->remove('cart');
         };
 
         return $this->redirectToRoute('app_main');
