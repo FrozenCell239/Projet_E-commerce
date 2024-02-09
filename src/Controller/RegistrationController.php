@@ -99,7 +99,7 @@ class RegistrationController extends AbstractController
             };
             return $this->redirectToRoute('app_main');
         }
-        else{ //https://youtu.be/UrJUn2EL07U?si=JVgaXUEn3yCpJ_fD&t=4459
+        else{
             $this->addFlash('danger', 'Jeton invalide et/ou expiré.');
             return $this->redirectToRoute('app_login');
         };
