@@ -55,7 +55,7 @@ class JWTService{
     # Verifying token's validity and integrity
     public function isValid(string $token) : bool {
         return preg_match(
-            '/^[a-zA-Z0-9\-\_\=]+\.[a-zA-Z0-9\-\_\=]+\.[a-zA-Z0-9\-\_\=]+$/',
+            '/^(?:[\w-]*\.){2}[\w-]*$/',
             $token
         ) === 1;
     }
