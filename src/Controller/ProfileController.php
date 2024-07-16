@@ -12,7 +12,11 @@ class ProfileController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        //!BUG : L'utilisateur ne doit pas accéder à cette page s'il n'est pas connecté.
+        // Forbid access to not logged in users
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        };
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'Mon profil',
         ]);
